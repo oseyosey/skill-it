@@ -338,6 +338,18 @@ def parse_args():
         default=None,
         help="Name of specific folder (generally MonthDateYear) to save results to."
     )
+    #* In-context learning args
+    parser.add_argument(
+        "--icl",
+        action="store_true",
+        help="If true, we perform in-context learning."
+    )
+    parser.add_argument(
+        "--icl_shots",
+        type=int,
+        default=0,
+        help="Number of examples we are giving to the model"
+    )
 
     args = parser.parse_args()
     return args
@@ -358,7 +370,9 @@ def main():
     logger.info("Constructing validation data.")
     validation_data = get_val_dataset(args, logger, tokenizer)
     
-    evaluator = get_evaluator(args, logger, model, tokenizer, output_dir_path)    
+    evaluator = get_evaluator(args, logger, model, tokenizer, output_dir_path) # e.g. return a NIEvaluator
+    
+    #* Here is when we do ICL 'training' *#
     logger.info("Training model!")
     trainer = get_trainer(args)   
     trainer.train(args, logger, tokenizer, model, validation_data, evaluator)

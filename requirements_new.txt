@@ -1,5 +1,5 @@
 absl-py==1.3.0
-accelerate==0.15.0
+accelerate
 aiohttp==3.8.3
 aiosignal==1.3.1
 annotated-types==0.6.0
@@ -36,10 +36,10 @@ cymem==2.0.7
 datasets==2.8.0
 debugpy==1.6.4
 decorator==5.1.1
-deepspeed==0.7.7
+deepspeed
 defusedxml==0.7.1
 diffusers==0.6.0
-dill==0.3.5.1
+dill==0.3.6
 diskcache==5.6.3
 docker-pycreds==0.4.0
 einops==0.7.0
@@ -105,7 +105,6 @@ Markdown==3.4.1
 MarkupSafe==2.1.1
 matplotlib==3.6.2
 matplotlib-inline==0.1.6
-maxentropy==0.3.0
 miniful==0.0.6
 mistune==2.0.4
 more-itertools==9.1.0
@@ -116,8 +115,8 @@ multiprocess==0.70.14
 munkres==1.1.4
 murmurhash==1.0.9
 mypy-extensions==0.4.3
-nbclassic==0.4.8
-nbclient==0.7.2
+nbclassic
+nbclient
 nbconvert==7.2.6
 nbformat==5.7.0
 nest-asyncio==1.5.6
@@ -128,17 +127,17 @@ notebook==6.5.2
 notebook_shim==0.2.2
 numba==0.56.4
 numpy==1.23.4
-nvidia-cublas-cu11==11.10.3.66
-nvidia-cuda-cupti-cu11==11.7.101
-nvidia-cuda-nvrtc-cu11==11.7.99
-nvidia-cuda-runtime-cu11==11.7.99
-nvidia-cudnn-cu11==8.5.0.96
-nvidia-cufft-cu11==10.9.0.58
-nvidia-curand-cu11==10.2.10.91
-nvidia-cusolver-cu11==11.4.0.1
-nvidia-cusparse-cu11==11.7.4.91
-nvidia-nccl-cu11==2.14.3
-nvidia-nvtx-cu11==11.7.91
+# nvidia-cublas-cu11==11.10.3.66
+# nvidia-cuda-cupti-cu11==11.7.101
+# nvidia-cuda-nvrtc-cu11==11.7.99
+# nvidia-cuda-runtime-cu11==11.7.99
+# nvidia-cudnn-cu11==8.5.0.96
+# nvidia-cufft-cu11==10.9.0.58
+# nvidia-curand-cu11==10.2.10.91
+# nvidia-cusolver-cu11==11.4.0.1
+# nvidia-cusparse-cu11==11.7.4.91
+# nvidia-nccl-cu11==2.14.3
+# nvidia-nvtx-cu11==11.7.91
 oauthlib==3.2.2
 openai==0.28.0
 packaging==21.3
@@ -210,7 +209,6 @@ setproctitle==1.3.2
 shortuuid==1.0.11
 simpful==2.9.0
 six==1.16.0
-scikit-learn
 smart-open==6.3.0
 smmap==5.0.0
 sniffio==1.3.0
@@ -236,11 +234,6 @@ tiktoken==0.3.3
 tinycss2==1.2.1
 tokenizers==0.13.3
 tomli==2.0.1
-torch==1.12.1+cu102
-torch-struct==0.5
-torchaudio==0.12.1+cu102
-torchmetrics==1.2.0
-torchvision==0.13.1+cu102
 tornado==6.2
 tqdm==4.64.1
 traitlets==5.5.0

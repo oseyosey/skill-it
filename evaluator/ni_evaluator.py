@@ -98,7 +98,7 @@ class NIEvaluator(AbstractEvaluator):
             method_name += f"_{prop_str}"
 
         
-        if self.args.mw:
+        if self.args.mw: #? what is mw (multiplicative weights)
             method_name += f"greedy_{self.args.update_steps}_"
             if self.args.eta_schedule:
                 method_name += f"eta_schedule_{self.args.eta}_"
@@ -193,7 +193,7 @@ class NIEvaluator(AbstractEvaluator):
             return loss_list, ni_data
         
         
-    def _evaluate_val(self, tokenized_data, counter, weights):
+    def _evaluate_val(self, tokenized_data, counter, weights): # weights are set to None
         self.model.eval()
         
         loss_dict = defaultdict(list)

@@ -188,6 +188,8 @@ class NIDataset(AbstractDataset):
                     task["Instances"] = [task["Instances"][self.dev_split[task_name][0]]]
                 else:
                     task["Instances"] = [obj for i, obj in enumerate(task["Instances"]) if i in self.dev_split[task_name]]
+
+            ## TODO:
             else:
                 # remove dev data
                 task["Instances"] = [obj for i, obj in enumerate(task["Instances"]) if i not in self.dev_split[task_name]]
@@ -219,7 +221,7 @@ class NIDataset(AbstractDataset):
         )
         
         if not self.is_eval:
-            return dataset
+            return dataset # Return the iterable natural instructions dataset. 
         else:
             return dataset, None
 
@@ -336,7 +338,6 @@ class NIStreamDataset(IterableDataset):
         .
         .
         .
-
         until the context_length is reached. If no_replace is True, there are no duplicate instances.
 
         Args:
@@ -412,6 +413,26 @@ class NIStreamDataset(IterableDataset):
         input_ids = input_ids[: self.context_length]
         input_ids = torch.tensor(input_ids).long()
         return task_done, input_ids
+    
+    def get_eval_icl_sequence(self):
+        """
+        For creating the in-context learning dataset, we iterate through all tasks and all instances of each task.
+        We sample k-number of in-context learning examples based on the proportions given, 
+        Yields both the task name and input_ids so that we can compute performance per validation task.
+        """
+        for task_name in self.tasks_to_p.keys():
+            task_done = False
+            while not task_done:
+                task_done, input_ids = self.sample_text_from_task(task_name)
+                self.iter_count += 1
+                task_info = self.train_task_info.loc[
+                    self.train_task_info.long_task == task_name
+                ]
+                info_dict = {slicer_dim: task_info[slicer_dim].values[0] for slicer_dim in self.slicer}
+                ret_dict = {"task": task_name, "input_ids": input_ids}
+                ret_dict.update(info_dict)
+                yield ret_dict
+
 
     def get_eval_sequence(self):
         """
@@ -470,6 +491,7 @@ class NIStreamDataset(IterableDataset):
             return self.get_eval_sequence()
         else:
             return cycle(self.get_sequence())
+
 
     def __iter__(self):
         if self.it is None:
